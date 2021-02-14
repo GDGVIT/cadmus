@@ -28,7 +28,7 @@
 		<td>
 		Sharanya Mukherjee
 		<p align="center">
-			<img src = "https://avatars.githubusercontent.com/u/59661067?s=400&u=380275c84d3c07dce16d669b01755d7f020d133a&v=4" width="150" height="150" alt="Sharanya Mukherjee (Insert Your Image Link In Src">
+			<img src = "https://avatars.githubusercontent.com/u/59661067?s=400&u=380275c84d3c07dce16d669b01755d7f020d133a&v=4" width="150" height="150" alt="Sharanya Mukherjee ">
 		</p>
 			<p align="center">
 				<a href = "https://github.com/sharanya02">
