@@ -12,6 +12,7 @@ vids
 train_1
 train_new.csv
 datanew.csv
+model.ipynb
 
 
 .ipynb_checkpoints
