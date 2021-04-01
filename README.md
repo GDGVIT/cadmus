@@ -3,7 +3,7 @@
 	<img src="https://user-images.githubusercontent.com/30529572/92081025-fabe6f00-edb1-11ea-9169-4a8a61a5dd45.png" alt="DSC VIT"/>
 </a>
 	<h2 align="center"> Cadmus </h2>
-	<h4 align="center"> Automatically caption ASL videos using deep neural networks , using the data set provided in the paper- "Word-level Deep Sign Language Recognition from Video: A New Large-scale Dataset and Methods Comparison". The project aims at developing a browser extension which can provide live captioning to sign language within a video call. <h4>
+	<h4 align="center"> Chrome extension that converts sign language to text in video calls. <h4>
 </p>
 
 ---
@@ -13,7 +13,8 @@
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
   [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
-
+## Description
+Automatically caption ASL videos using deep neural networks , using the data set provided in the paper- "Word-level Deep Sign Language Recognition from Video: A New Large-scale Dataset and Methods Comparison". The project aims at developing a browser extension which can provide live captioning to sign language within a video call.
 ## Features
 - [ ]  live captioning for sign language during video call.
 - [ ]  Person signing to be pinned in the video meet.
@@ -28,7 +29,7 @@
 		<td>
 		Sharanya Mukherjee
 		<p align="center">
-			<img src = "https://avatars.githubusercontent.com/u/59661067?s=400&u=380275c84d3c07dce16d669b01755d7f020d133a&v=4" width="150" height="150" alt="Sharanya Mukherjee (Insert Your Image Link In Src">
+			<img src = "https://avatars.githubusercontent.com/u/59661067?s=400&u=380275c84d3c07dce16d669b01755d7f020d133a&v=4" width="150" height="150" alt="Sharanya Mukherjee ">
 		</p>
 			<p align="center">
 				<a href = "https://github.com/sharanya02">
