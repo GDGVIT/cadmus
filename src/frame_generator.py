@@ -6,15 +6,12 @@ import numpy as np
 from tensorflow import keras
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-
+#extracts n frames from a video
 class VideoFrameGenerator(keras.utils.Sequence):
-    """
-    The VideoFrameGenerator extracts n frames from a video.
-    """
 
     def __init__(self, list_IDs, labels, batch_size=32, dim=(32, 32),
                  n_channels=3, n_sequence=10, shuffle=True, type_gen='train'):
-        """Initialization"""
+        
         self.dim = dim
         self.batch_size = batch_size
         self.labels = labels
@@ -30,17 +27,17 @@ class VideoFrameGenerator(keras.utils.Sequence):
         self.on_epoch_end()
 
     def __len__(self):
-        """Denotes the number of batches per epoch"""
+        #number of batches per epoch
         return int(np.floor(len(self.list_IDs) / self.batch_size))
 
     def on_epoch_end(self):
-        """Updates indexes after each epoch"""
+        #updating index after epoch
         self.indexes = np.arange(len(self.list_IDs))
         if self.shuffle == True:
             np.random.shuffle(self.indexes)
 
     def __getitem__(self, index):
-        """Generate one batch of data"""
+        
         # Generate indexes of the batch
         indexes = self.indexes[
                   index * self.batch_size:(index + 1) * self.batch_size]
@@ -52,12 +49,7 @@ class VideoFrameGenerator(keras.utils.Sequence):
         return X, y
 
     def frame_sampling(self, len_frames):
-        """
-        Sample the video with the chosen policy.
-
-        :param len_frames: video length (in frames)
-        :return: the indexes of the sampled frames.
-        """
+    
         # create a list of frames
         frames = list(range(len_frames))
 
@@ -74,12 +66,7 @@ class VideoFrameGenerator(keras.utils.Sequence):
         return sampling
 
     def sampling_mode_1(self, chunks):
-        """
-        Select 10 frames from the entire sequence.
-
-        :param chunks: blocks from which to select frames.
-        :return: the indexes of the 10 frames sampled.
-        """
+      
         sampling = []
         for i, chunk in enumerate(chunks):
             if i == 0 or i == 1:
@@ -92,14 +79,7 @@ class VideoFrameGenerator(keras.utils.Sequence):
         return sampling
 
     def sampling_mode_2(self, frames, n_sequence):
-        """
-        Do a pre-sampling by creating 12 chunks. Then apply the first sampling
-        mode (sampling_mode_1 function).
 
-        :param frames: list of frames.
-        :param n_sequence: number of frames to sample.
-        :return: the indexes of the 10 frames sampled.
-        """
         # create 12 chunks
         chunks = list(self.get_chunks(frames, 12))
 
@@ -123,7 +103,7 @@ class VideoFrameGenerator(keras.utils.Sequence):
                 range(n))
 
     def __data_generation(self, list_IDs_temp):
-        """Generates data containing batch_size samples"""
+        #Generating data with batch size samples
         # Initialization
         X = np.empty((self.batch_size, self.n_sequence, *self.dim,
                       self.n_channels))
@@ -157,16 +137,16 @@ class VideoFrameGenerator(keras.utils.Sequence):
 
     def sampling_augmentation(self, sequence):
         """
-        - `'theta'`: Float. Rotation angle in degrees.
-        - `'tx'`: Float. Shift in the x direction. - vertical shift (height)
-        - `'ty'`: Float. Shift in the y direction. - horizontal shift (width)
-        - `'shear'`: Float. Shear angle in degrees.
-        - `'zx'`: Float. Zoom in the x direction. - vertical zoom
-        - `'zy'`: Float. Zoom in the y direction. - horizontal zoom
-        - `'flip_horizontal'`: Boolean. Horizontal flip.
-        - `'flip_vertical'`: Boolean. Vertical flip.
-        - `'channel_shift_intensity'`: Float. Channel shift intensity.
-        - `'brightness'`: Float. Brightness shift intensity.
+        - theta: Float. Rotation angle in degrees.
+        - tx: Float. Shift in the x direction. - vertical shift (height)
+        - ty: Float. Shift in the y direction. - horizontal shift (width)
+        - shear: Float. Shear angle in degrees.
+        - zx: Float. Zoom in the x direction. - vertical zoom
+        - zy: Float. Zoom in the y direction. - horizontal zoom
+        - flip_horizontal: Boolean. Horizontal flip.
+        - flip_vertical: Boolean. Vertical flip.
+        - channel_shift_intensity: Float. Channel shift intensity.
+        - brightness: Float. Brightness shift intensity.
         """
         transformations = ['theta', 'tx', 'ty', 'zx', 'zy', 'flip_horizontal',
                            'brightness']

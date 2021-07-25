@@ -97,7 +97,7 @@ path = './saved_models/'
 checkpoint_cb = ModelCheckpoint(path + 'best_model.h5', save_best_only=True)
 
 # start training
-print('\nStart training . . .')
+print('\n Training started')
 learn_epochs = 300
 history = model.fit(train_generator,
                     validation_data=val_generator,
@@ -108,7 +108,7 @@ history = model.fit(train_generator,
 if not os.path.isdir('./plots/'):
     os.mkdir('./plots/')
 
-print('\nSaving learning curves graph . . .')
+print('\nSaving learning curves graph')
 pd.DataFrame(history.history).plot(figsize=(9, 6))
 plt.grid(True)
 plt.gca().set_ylim(0, 4)

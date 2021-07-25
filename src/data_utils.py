@@ -3,12 +3,8 @@ import os
 
 
 def labels_to_number(path):
-    """
-    Convert string labels in numbers.
 
-    :param path: path to folder.
-    :return: a dictionary.
-    """
+    #converting string labels in numbers
     classes = [i.split(os.path.sep)[3] for i in glob.glob(path + '*')]
     classes.sort()
 
@@ -20,13 +16,7 @@ def labels_to_number(path):
 
 
 def videos_to_dict(path, labels):
-    """
-    Read the videos and return a dict like {'path_to_video', 'label'}.
 
-    :param path: path to videos folder.
-    :param labels: labels as dict.
-    :return: a dictionary.
-    """
     videos_dict = {}
     for root, dirs, files in os.walk(os.path.relpath(path)):
         for file in files:

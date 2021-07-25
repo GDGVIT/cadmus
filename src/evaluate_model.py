@@ -45,5 +45,5 @@ test_generator = VideoFrameGenerator(
 )
 
 # evaluate the best model on test set
-print('\nEvaluating the best model on test set . . .')
+print('\nEvaluating')
 eval_loss, eval_acc = model.evaluate(test_generator)
