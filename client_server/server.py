@@ -1,8 +1,16 @@
 import threading
-
+import sys
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
+import socketio
+
+# standard Python
+sio = socketio.Client()
+sio.connect('https://cadmus-server.herokuapp.com/')
+
+if(len(sys.argv)>0):
+    sio.emit('join', {'room':sys.argv[0]})
 
 # global variables
 gloss_show = 'Word: none'
@@ -103,9 +111,7 @@ def make_prediction(frame_buffer, model, threshold):
             gloss,
             acc_best_pred * 100)
         print(gloss_show)
-    else:
-        gloss_show = 'Word: none'
-
+        sio.emit('word',gloss)
 
 if __name__ == '__main__':
     main()
