@@ -9,8 +9,8 @@ import socketio
 sio = socketio.Client()
 sio.connect('https://cadmus-server.herokuapp.com/')
 
-if(len(sys.argv)>0):
-    sio.emit('join', {'room':sys.argv[0]})
+if(len(sys.argv)>1):
+    sio.emit('join', {'room':sys.argv[1]})
 
 # global variables
 gloss_show = 'Word: none'
