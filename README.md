@@ -16,10 +16,14 @@
 
 ## Features
 - [ ]  live captioning for sign language during video call.
-- [ ]  Person signing to be pinned in the video meet.
-- [ ]  translated captions can be downloaded as pdf later.
+- [ ]  All participants in the google meet or zoom meet first join the socket room through our extension
+- [ ]  Our model translates the sign language into text in the client server using sockets, which is then broadcasted into the room.
+- [ ]  Broadcasted text appears as subtitles for everyone present in the meeting.
 
 <br>
+	
+## Architecture Overview
+
 
 ## Contributors
 
