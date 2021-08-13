@@ -23,7 +23,7 @@
 <br>
 	
 ## Architecture Overview
-!img[https://github.com/sharanya02/cadmus/blob/master/media/architecture.png?raw=true]
+![img](https://github.com/sharanya02/cadmus/blob/master/media/architecture.png?raw=true)
 
 
 ## Contributors
