@@ -25,6 +25,18 @@
 ## Architecture Overview
 ![img](https://github.com/sharanya02/cadmus/blob/master/media/architecture.png?raw=true)
 
+## Usage
+
+Let's see how to start the client server and start making predictions!
+For linux users, first cd into the ```client-server``` directory, install the requirements from requirements.txt inside a virtual environment and then run-
+```bash
+sudo bash run.sh
+```
+Next, open another terminal in the same directory and make sure you're inside the virtual environment you previously created, then run-
+```
+python3 charserver.py <INSERT A NAME FOR THE SOCKET ROOM>
+```
+
 
 ## Contributors
 
