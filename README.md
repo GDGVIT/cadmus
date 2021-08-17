@@ -36,9 +36,20 @@ Next, open another terminal in the same directory and make sure you're inside th
 ```
 python3 charserver.py <INSERT A NAME FOR THE SOCKET ROOM>
 ```
+
+or, if one wants to use the word-level prediction server, run-
+```bash
+python3 wordserver.py <INSERT A NAME FOR THE SOCKET ROOM>
+```
+<br>
+	
 Now, one can use our extension to simply join the room to get all subtitles. After joining the room, the person who will be signing must go to the host settings on google meet or zoom, and then select the ```My Fake Webcam```option under camera, as shown below-
 <br>
-![img](https://github.com/sharanya02/cadmus/blob/master/media/camera.png?raw=true)																																	
+	
+![img](https://github.com/sharanya02/cadmus/blob/master/media/camera.png?raw=true)																													
+
+## Acknowledgements
+* [WLASL dataset](https://dxli94.github.io/WLASL/)
 
 ## Contributors
 
