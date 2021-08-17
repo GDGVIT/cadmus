@@ -7,34 +7,34 @@ import socketio
 
 # standard Python
 sio = socketio.Client()
-sio.connect('https://cadmus-server.herokuapp.com/')
+sio.connect("https://cadmus-server.herokuapp.com/")
 
-if(len(sys.argv)>1):
-    sio.emit('join', {'room':sys.argv[1]})
+if len(sys.argv) > 1:
+    sio.emit("join", {"room": sys.argv[1]})
 
 # global variables
-gloss_show = 'Word: none'
+gloss_show = "Word: none"
 labels = {
-    0: 'book',
-    1: 'chair',
-    2: 'clothes',
-    3: 'computer',
-    4: 'drink',
-    5: 'drum',
-    6: 'family',
-    7: 'football',
-    8: 'go',
-    9: 'hat',
-    10: 'hello',
-    11: 'kiss',
-    12: 'like',
-    13: 'play',
-    14: 'school',
-    15: 'street',
-    16: 'table',
-    17: 'university',
-    18: 'violin',
-    19: 'wall'
+    0: "book",
+    1: "chair",
+    2: "clothes",
+    3: "computer",
+    4: "drink",
+    5: "drum",
+    6: "family",
+    7: "football",
+    8: "go",
+    9: "hat",
+    10: "hello",
+    11: "kiss",
+    12: "like",
+    13: "play",
+    14: "school",
+    15: "street",
+    16: "table",
+    17: "university",
+    18: "violin",
+    19: "wall",
 }
 
 
@@ -42,8 +42,8 @@ def main():
     dim = (224, 224)
     frames = 8
     channels = 3
-    model_path = './word_model.h5'
-    threshold = .50
+    model_path = "./word_model.h5"
+    threshold = 0.50
 
     print("initializing ")
     # define empty buffer
@@ -73,8 +73,9 @@ def main():
             if frame_buffer.shape[0] == frames:
                 # make the prediction
                 if not x.is_alive():
-                    x = threading.Thread(target=make_prediction, args=(
-                        frame_buffer, model, threshold))
+                    x = threading.Thread(
+                        target=make_prediction, args=(frame_buffer, model, threshold)
+                    )
                     x.start()
                 else:
                     pass
@@ -82,12 +83,13 @@ def main():
                 frame_buffer = frame_buffer[1:frames]
                 # show label
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                cv2.putText(frame, gloss_show, (20, 450), font, 1, (0, 255, 0),
-                            2, cv2.LINE_AA)
-                cv2.imshow('frame', frame)
+                cv2.putText(
+                    frame, gloss_show, (20, 450), font, 1, (0, 255, 0), 2, cv2.LINE_AA
+                )
+                cv2.imshow("frame", frame)
 
             # press Q to exit
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
         else:
             break
@@ -107,11 +109,10 @@ def make_prediction(frame_buffer, model, threshold):
     # check mislabeling
     if acc_best_pred > threshold:
         gloss = labels[best_pred_idx]
-        gloss_show = "Word: {: <3}  {:.2f}% ".format(
-            gloss,
-            acc_best_pred * 100)
+        gloss_show = "Word: {: <3}  {:.2f}% ".format(gloss, acc_best_pred * 100)
         print(gloss_show)
-        sio.emit('word',gloss)
+        sio.emit("word", gloss)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

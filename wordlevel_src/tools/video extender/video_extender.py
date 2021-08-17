@@ -15,7 +15,7 @@ import cv2
 from natsort import natsorted
 
 # global variables
-root_folder = './extracted_frames/'
+root_folder = "./extracted_frames/"
 
 
 def main():
@@ -23,20 +23,20 @@ def main():
     videos_path = sys.argv[1]
     output_folder_path = sys.argv[2]
 
-    print('[log] > Creating folders ...\n')
+    print("[log] > Creating folders ...\n")
     # create the required folders
     create_folders(output_folder_path)
 
-    print('[log] > Processing videos ...\n')
+    print("[log] > Processing videos ...\n")
     # get all videos path
-    videos = [vid for vid in glob.glob(videos_path + '/*.mp4')]
+    videos = [vid for vid in glob.glob(videos_path + "/*.mp4")]
     for video in videos:
         # extract frames from videos
         extract_frames(video)
         # extend the video and save it
         extend_video(video, output_folder_path)
 
-    print('[log] > Done!')
+    print("[log] > Done!")
 
 
 def create_folders(output_folder_path):
@@ -52,20 +52,20 @@ def extract_frames(video_path):
     # create a folder to store the extracted frames
     create_frames_folder(video_path)
     # extract frames
-    video_name = video_path.split('/')[-1][:-4]
+    video_name = video_path.split("/")[-1][:-4]
     folder_extracted_frames = root_folder + video_name
     vid_cap = cv2.VideoCapture(video_path)
     success, image = vid_cap.read()
     count = 0
     while success:
         # save frame as JPEG file
-        cv2.imwrite(folder_extracted_frames + '/%d.jpg' % count, image)
+        cv2.imwrite(folder_extracted_frames + "/%d.jpg" % count, image)
         success, image = vid_cap.read()
         count += 1
 
 
 def create_frames_folder(video_path):
-    video_name = video_path.split('/')[-1][:-4]
+    video_name = video_path.split("/")[-1][:-4]
     folder_extracted_frames = root_folder + video_name
     if os.path.isdir(folder_extracted_frames):
         shutil.rmtree(folder_extracted_frames)
@@ -75,10 +75,10 @@ def create_frames_folder(video_path):
 
 
 def extend_video(video_path, output_folder_path):
-    video_name = video_path.split('/')[-1][:-4]
+    video_name = video_path.split("/")[-1][:-4]
     folder_extracted_frames = root_folder + video_name
     # get the extracted frames in order
-    frames = [img for img in glob.glob(folder_extracted_frames + '/*.jpg')]
+    frames = [img for img in glob.glob(folder_extracted_frames + "/*.jpg")]
     frames = natsorted(frames)
     # collect frames together
     size = (0, 0)
@@ -93,8 +93,8 @@ def extend_video(video_path, output_folder_path):
     for _ in range(padding):
         img_array.append(img_array[-1])
     # save the video
-    extended_video_path = output_folder_path + video_name + '.mp4'
-    fourcc = 0x7634706d  # mp4 format
+    extended_video_path = output_folder_path + video_name + ".mp4"
+    fourcc = 0x7634706D  # mp4 format
     fps = 25
     out = cv2.VideoWriter(extended_video_path, fourcc, fps, size)
     for i in range(len(img_array)):
@@ -107,11 +107,11 @@ def extend_video(video_path, output_folder_path):
     frame_count = int(video_cap.get(cv2.CAP_PROP_FRAME_COUNT))
     duration = frame_count / fps
     video_cap.release()
-    print(f'Video: {video_name}')
-    print(f'FPS: {fps}')
-    print(f'Frames: {frame_count}')
-    print(f'Duration: {duration}s\n')
+    print(f"Video: {video_name}")
+    print(f"FPS: {fps}")
+    print(f"Frames: {frame_count}")
+    print(f"Duration: {duration}s\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

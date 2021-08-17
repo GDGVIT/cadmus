@@ -13,7 +13,7 @@ frames = 10
 channels = 3
 output = 20
 
-TEST_PATH = './data/test/'
+TEST_PATH = "./data/test/"
 # transform labels from string to number
 labels = labels_to_number(TEST_PATH)
 # load dataset as dict
@@ -22,17 +22,19 @@ y_test_dict = videos_to_dict(TEST_PATH, labels)
 X_test = list(y_test_dict.keys())
 
 # load the best model after training
-last = load_model('./saved_models/best_model.h5')
+last = load_model("./saved_models/best_model.h5")
 
 # instantiation of the model with best model's weights
 model = create_model_wlasl20c(frames, width, height, channels, output)
-model.compile(optimizer=last.optimizer,
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
+model.compile(
+    optimizer=last.optimizer,
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"],
+)
 model.set_weights(last.get_weights())
 
 # instantiation of test generator
-print('\nTest generator')
+print("\nTest generator")
 test_generator = VideoFrameGenerator(
     list_IDs=X_test,
     labels=y_test_dict,
@@ -41,9 +43,9 @@ test_generator = VideoFrameGenerator(
     n_channels=channels,
     n_sequence=frames,
     shuffle=False,
-    type_gen='test'
+    type_gen="test",
 )
 
 # evaluate the best model on test set
-print('\nEvaluating')
+print("\nEvaluating")
 eval_loss, eval_acc = model.evaluate(test_generator)

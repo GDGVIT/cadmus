@@ -4,8 +4,8 @@ import os
 
 def labels_to_number(path):
 
-    #converting string labels in numbers
-    classes = [i.split(os.path.sep)[3] for i in glob.glob(path + '*')]
+    # converting string labels in numbers
+    classes = [i.split(os.path.sep)[3] for i in glob.glob(path + "*")]
     classes.sort()
 
     labels_dict = {}
