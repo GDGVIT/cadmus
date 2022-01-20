@@ -40,7 +40,7 @@ labels = {
 
 def main():
     dim = (224, 224)
-    frames = 8
+    frames = 10
     channels = 3
     model_path = "./word_model.h5"
     threshold = 0.50
