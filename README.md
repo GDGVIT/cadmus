@@ -16,10 +16,40 @@
 
 ## Features
 - [ ]  live captioning for sign language during video call.
-- [ ]  Person signing to be pinned in the video meet.
-- [ ]  translated captions can be downloaded as pdf later.
+- [ ]  All participants in the google meet or zoom meet first join the socket room through our extension
+- [ ]  Our model translates the sign language into text in the client server using sockets, which is then broadcasted into the room.
+- [ ]  Broadcasted text appears as subtitles for everyone present in the meeting.
 
 <br>
+	
+## Architecture Overview
+![img](https://github.com/sharanya02/cadmus/blob/master/media/architecture.png?raw=true)
+
+## Usage
+
+Let's see how to start the client server and start making predictions!
+For linux users, first cd into the ```client-server``` directory, install the requirements from requirements.txt inside a virtual environment and then run-
+```bash
+sudo bash run.sh
+```
+Next, open another terminal in the same directory and make sure you're inside the virtual environment you previously created, then run-
+```
+python3 charserver.py <INSERT A NAME FOR THE SOCKET ROOM>
+```
+
+or, if one wants to use the word-level prediction server, run-
+```bash
+python3 wordserver.py <INSERT A NAME FOR THE SOCKET ROOM>
+```
+<br>
+	
+Now, one can use our extension to simply join the room to get all subtitles. After joining the room, the person who will be signing must go to the host settings on google meet or zoom, and then select the ```My Fake Webcam```option under camera, as shown below-
+<br>
+	
+![img](https://github.com/sharanya02/cadmus/blob/master/media/camera.png?raw=true)																													
+
+## Acknowledgements
+* [WLASL dataset](https://dxli94.github.io/WLASL/)
 
 ## Contributors
 
